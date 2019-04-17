@@ -3,9 +3,12 @@ package com.example.yuya.menusample;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +28,17 @@ public class MenuListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_list);
 
         _lvMenu = findViewById(R.id.lvMenu);
+        _menuList = createTeisyokuList();
+        SimpleAdapter adapter = new SimpleAdapter(MenuListActivity.this,_menuList, R.layout.row,FORM,TO);
+        _lvMenu.setAdapter(adapter);
+        _lvMenu.setOnItemClickListener(new ListItemClickListener());
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_option_menu_list,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     private List<Map<String,Object>> createTeisyokuList(){
@@ -46,6 +59,77 @@ public class MenuListActivity extends AppCompatActivity {
         menu.put("name","生姜焼き定食");
         menu.put("price","800");
         menu.put("desc","生姜焼き、サラダ、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","ステーキ定食");
+        menu.put("price","1050");
+        menu.put("desc","牛ステーキ150g、サラダ、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","野菜炒め定食");
+        menu.put("price","750");
+        menu.put("desc","野菜炒め、漬物、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","とんかつ定食");
+        menu.put("price","850");
+        menu.put("desc","ヒレカツ、サラダ、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","ミンチかつ定食");
+        menu.put("price","850");
+        menu.put("desc","メンチカツ、サラダ、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","チキンカツ定食");
+        menu.put("price","950");
+        menu.put("desc","チキンカツ、サラダ、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","コロッケ定食");
+        menu.put("price","650");
+        menu.put("desc","コロッケ、サラダ、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","焼き魚定食");
+        menu.put("price","800");
+        menu.put("desc","アジの開き、おひたし、味噌汁");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","焼肉定食");
+        menu.put("price","850");
+        menu.put("desc","焼肉200g、サラダ、味噌汁");
+        menuList.add(menu);
+
+        return menuList;
+    }
+
+    private List<Map<String,Object>> createCurryList(){
+        List<Map<String,Object>> menuList = new ArrayList<>();
+        Map<String,Object> menu = new HashMap<>();
+        menu.put("name","ビーフカレー");
+        menu.put("price","600");
+        menu.put("desc","ビーフカレーとサラダ、スープセット");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","ポークカレー");
+        menu.put("price","550");
+        menu.put("desc","ポークカレーとサラダ、スープセット");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("name","チキンカレー");
+        menu.put("price","500");
+        menu.put("desc","チキンカレーとサラダ、スープセット");
         menuList.add(menu);
 
         menu = new HashMap<>();
